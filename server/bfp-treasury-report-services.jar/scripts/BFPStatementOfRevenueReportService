@@ -1,0 +1,42 @@
+import com.rameses.annotations.*;
+
+class BFPStatementOfRevenueReportService {
+
+	@DataContext('account_maingroup')
+	def acct_group_db; 
+
+	@DataContext('account')
+	def acct_db; 
+
+	@ActiveDB('bfp_treasury_report')
+	def report_db; 
+
+	@ProxyMethod
+	public def init( param ) {
+		return [:]; 
+	}
+
+	@ProxyMethod 
+	public def getReport( param ) {
+		if ( !param.startdate ) throw new Exception("'startdate' parameter is required"); 
+		if ( !param.enddate ) throw new Exception("'enddate' parameter is required"); 
+
+		def acctgroup = acct_group_db.find([ objid: 'BFP ']); 
+		if ( !acctgroup ) throw new Exception("'BFP' account group not found"); 
+
+		def postingtype = param.postingtype?.objid.toString().toLowerCase(); 
+		if ( postingtype == 'remittance' ) {
+			return build( report_db.getReportByRemittance( param ));
+		}
+		else {
+			return build( report_db.getReportByLiquidation( param ));
+		}
+	}
+
+	def build( list ) {
+		if ( !list ) throw new Exception('No record(s) that matches your criteria'); 
+
+		def res = [ reportdata: list, header: [:]]; 
+		return res; 
+	}
+}

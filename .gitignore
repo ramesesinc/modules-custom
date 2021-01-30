@@ -17,3 +17,5 @@ Thumbs.db
 /**/nbproject/groovy-build.xml
 /**/.terminal
 /**/Thumbs.db
+/client/bfp-treasury-report/build/
+/client/bfp-treasury-report/dist/
