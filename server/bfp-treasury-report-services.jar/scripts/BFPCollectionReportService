@@ -1,6 +1,6 @@
 import com.rameses.annotations.*;
 
-class BFPStatementOfRevenueReportService {
+class BFPCollectionReportService {
 
 	@DataContext('account_maingroup')
 	def acct_group_db; 
@@ -8,8 +8,8 @@ class BFPStatementOfRevenueReportService {
 	@DataContext('account')
 	def acct_db; 
 
-	@ActiveDB('bfp_treasury_report')
-	def report_db; 
+	@ActiveDB('bfp_collection_liquidation_report')
+	def liq_report_db; 
 
 	@ProxyMethod
 	public def init( param ) {
@@ -25,18 +25,21 @@ class BFPStatementOfRevenueReportService {
 		if ( !acctgroup ) throw new Exception("'BFP' account group not found"); 
 
 		def postingtype = param.postingtype?.objid.toString().toLowerCase(); 
-		if ( postingtype == 'remittance' ) {
-			return build( report_db.getReportByRemittance( param ));
-		}
-		else {
-			return build( report_db.getReportByLiquidation( param ));
-		}
-	}
+		if ( postingtype != 'liquidation' ) 
+			throw new Exception("'"+ postingtype +"' Posting Type not supported"); 
 
-	def build( list ) {
+		def list = null; 
+		def template = param.template?.objid.toString(); 
+		if ( template == 'liquidation_group' ) { 
+			list = liq_report_db.getReceiptsByGroup( param );
+		} 
+		else {
+			list = liq_report_db.getReceipts( param );
+		}
+
 		if ( !list ) throw new Exception('No record(s) that matches your criteria'); 
 
 		def res = [ reportdata: list, header: [:]]; 
 		return res; 
-	}
+	} 
 }

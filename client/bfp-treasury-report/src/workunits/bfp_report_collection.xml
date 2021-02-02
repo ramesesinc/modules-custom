@@ -1,0 +1,18 @@
+<workunit extends="wtemplates/ReportController.xml" >
+    <invokers>
+        <invoker folderid="/explorer/report/treasury" 
+                 caption="Report of Collections (BFP)" action="init" 
+                 role="REPORT" target="window"/>
+        
+        <invoker folderid="menucategory/bfp/report" 
+                 caption="Report of Collections (BFP)" action="init" 
+                 role="REPORT" target="window"/>
+        
+    </invokers>
+    
+    <code class="bfp.treasury.report.models.CollectionReportModel"/>
+
+    <pages>
+        <page template="bfp.treasury.report.views.CollectionReportInitPage" />
+    </pages> 
+</workunit>

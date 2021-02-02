@@ -4,7 +4,7 @@
 "entity.*" [1==1] {
     visible: false; 
 }
-"entity.(period|postingtype)" [1==1] {
+"entity.(template|postingtype|period)" [1==1] {
     visible: true; 
 }
 "entity.year" [entity.period.toString().matches('yearly|quarterly|monthly|asofqtr|asofmonth')==true] {

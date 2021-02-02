@@ -1,0 +1,7 @@
+<folders>
+    <folder id="menucategory">
+        <folder id="bfp" caption="BFP">
+            <folder id="report" caption="Reports" index="1000" icon="home/icons/postledger.png"/>
+        </folder>
+    </folder>
+</folders>

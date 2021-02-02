@@ -1,0 +1,8 @@
+<workunit extends="com/rameses/menu/templates/MenuCategory.xml" context="bfp">
+    <invokers>
+        <invoker type="home.action" 
+                 caption="BFP" icon="home/icons/folder.png"
+                 visibleWhen="#{self.hasChildren('menucategory/bfp')==true}" 
+                 index="1" action="init"/>
+    </invokers> 
+</workunit>

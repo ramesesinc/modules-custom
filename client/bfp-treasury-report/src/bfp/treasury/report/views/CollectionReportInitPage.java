@@ -14,12 +14,12 @@ import com.rameses.rcp.ui.annotations.Template;
  */
 @StyleSheet
 @Template(FormPage.class)
-public class StatementOfRevenueInitPage extends javax.swing.JPanel {
+public class CollectionReportInitPage extends javax.swing.JPanel {
 
     /**
-     * Creates new form StatementOfRevenueInitPage
+     * Creates new form CollectionReportInitPage
      */
-    public StatementOfRevenueInitPage() {
+    public CollectionReportInitPage() {
         initComponents();
     }
 
@@ -39,6 +39,7 @@ public class StatementOfRevenueInitPage extends javax.swing.JPanel {
         xLabel2 = new com.rameses.rcp.control.XLabel();
         jPanel1 = new javax.swing.JPanel();
         xFormPanel1 = new com.rameses.rcp.control.XFormPanel();
+        xComboBox8 = new com.rameses.rcp.control.XComboBox();
         xComboBox7 = new com.rameses.rcp.control.XComboBox();
         xComboBox1 = new com.rameses.rcp.control.XComboBox();
         xIntegerField1 = new com.rameses.rcp.control.XIntegerField();
@@ -80,6 +81,17 @@ public class StatementOfRevenueInitPage extends javax.swing.JPanel {
         xFormPanel1.setCaptionWidth(110);
         xFormPanel1.setCellspacing(3);
         xFormPanel1.setPadding(new java.awt.Insets(10, 10, 10, 10));
+
+        xComboBox8.setCaption("Template");
+        xComboBox8.setExpression("  #{item.name}");
+        xComboBox8.setItems("templateTypes");
+        xComboBox8.setName("entity.template"); // NOI18N
+        xComboBox8.setAllowNull(false);
+        xComboBox8.setCaptionWidth(120);
+        xComboBox8.setImmediate(true);
+        xComboBox8.setPreferredSize(new java.awt.Dimension(300, 22));
+        xComboBox8.setRequired(true);
+        xFormPanel1.add(xComboBox8);
 
         xComboBox7.setCaption("Posting Type");
         xComboBox7.setExpression("  #{item.name}");
@@ -125,8 +137,8 @@ public class StatementOfRevenueInitPage extends javax.swing.JPanel {
 
         xComboBox3.setCaption("Month");
         xComboBox3.setDepends(new String[] {"entity.period"});
-        xComboBox3.setExpression("  #{item.name}");
-        xComboBox3.setItems("months");
+        xComboBox3.setExpression("  #{item.caption}");
+        xComboBox3.setItems("periodUtil.months");
         xComboBox3.setName("entity.month"); // NOI18N
         xComboBox3.setCaptionWidth(120);
         xComboBox3.setImmediate(true);
@@ -173,6 +185,7 @@ public class StatementOfRevenueInitPage extends javax.swing.JPanel {
     private com.rameses.rcp.control.XComboBox xComboBox2;
     private com.rameses.rcp.control.XComboBox xComboBox3;
     private com.rameses.rcp.control.XComboBox xComboBox7;
+    private com.rameses.rcp.control.XComboBox xComboBox8;
     private com.rameses.rcp.control.XDateField xDateField1;
     private com.rameses.rcp.control.XDateField xDateField2;
     private com.rameses.rcp.control.XDateField xDateField3;
